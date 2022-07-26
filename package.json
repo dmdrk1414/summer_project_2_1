@@ -1,0 +1,25 @@
+{
+  "name": "summer_project_2_1-main",
+  "version": "1.0.0",
+  "description": "박승찬, 김다경, 조성무",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmdrk1414/summer_project_2_1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dmdrk1414/summer_project_2_1/issues"
+  },
+  "homepage": "https://github.com/dmdrk1414/summer_project_2_1#readme",
+  "dependencies": {
+    "node-sass": "^7.0.1",
+    "reset.scss": "^1.0.0",
+    "src": "^1.1.2"
+  }
+}

@@ -1,0 +1,2 @@
+// screan
+import "./screan/article";
