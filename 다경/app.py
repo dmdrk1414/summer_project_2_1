@@ -1,11 +1,13 @@
 from turtle import color
 import streamlit as st
+from streamlit.components.v1 import html 
 import altair as alt
 
 import pandas as pd
 import numpy as np
 import joblib
 
+CSS_PATH = 'example.css'
 
 pipe = joblib.load(open("models/pipe_lr_0x4788.pkl","rb"))
     
@@ -49,7 +51,13 @@ def main():
 
             fig = alt.Chart(prob_df).mark_bar().encode(x='캐릭터',y='확률')
             st.altair_chart(fig,use_container_width=True)
-            
+
+
+def background_styling():
+    with open(CSS_PATH) as f:
+        st.markdown(f'<style>{f.read()}</style>',unsafe_allow_html=True)
+
 
 if __name__=='__main__':
+    background_styling()
     main()
