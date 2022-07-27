@@ -1,9 +1,52 @@
-const articles = [
-  {
-    tytle: "尹 대통령 내부 총질이나 하던 당 대표 바뀌니 달라져",
-    content:
-      "윤석열 대통령이 이준석 국민의힘 대표에 대해 “내부 총질이나 하던 당 대표”라는 표현을 휴대전화 메시지에 쓴 장면이 포착됐다.국회 사진기자단은 26일 오후 4시쯤 국회 본회의장에서 개최된 대정부질문을 지켜보던 권성동 국민의힘 당 대표 직무대행 겸 원내대표의 휴대전화에서 윤 대통령 추정 인물이 권 직무대행과 텔레그램 메시지를 주고받은 장면을 촬영했다. ‘대통령 윤석열’로 표시된 발신자는 권 직무대행에게 “우리당도 잘하네요. 계속 이렇게 해야”·“내부 총질이나 하던 당대표가 바뀌니 달라졌습니다”라고 메시지를 보냈다.이에 권 원내대표는 “대통령님의 뜻을 잘 받들어 당정이 하나되는 모습을 보이겠습니다”라고 답했다. 만약 ‘대통령 윤석열’로 표시된 발신자가 윤 대통령으로 확인될 경우, 그동안 공개적으로 이 대표에 대한 평가를 내놓지 않았던 윤 대통령의 본심이 그대로 드러난 것이어서 큰 논란이 일 것으로 보인다.",
-  },
-];
-console.log(articles);
-// console.log("test");
+const jsonData = require("../../json/article.json"); // take json file
+const jsonArray = jsonData.articles; // make json file to array
+
+const getRamNumber = Math.floor(Math.random() * jsonArray.length); // return random int
+const jsonArrRan = jsonArray[getRamNumber]; // json ArrRan
+const jsonKey = Object.keys(jsonData.articles[0]); // get json key
+console.log(jsonArray);
+console.log(jsonArrRan);
+console.log(jsonKey);
+
+const art_container = document.querySelectorAll(".article");
+const art_title = art_container[0];
+const art_reporter = art_container[1];
+const art_contents = art_container[2];
+const art_source = art_container[3];
+
+// fuxk
+const testArray = [];
+testArray.push(jsonArrRan.tytle);
+testArray.push(jsonArrRan.reporter);
+testArray.push(jsonArrRan.content);
+testArray.push(jsonArrRan.source);
+console.log(testArray);
+
+// add div func to individual of art_container
+// input class to div
+function artAdd_div() {
+  let i = 0;
+  art_container.forEach((art) => {
+    const art_div = document.createElement("div");
+    art.appendChild(art_div);
+    art_div.classList.add(`${jsonKey[i++]}`);
+  });
+}
+
+// add txt of div to append child art
+function art_div_inputText() {
+  for (let i = 0; i < art_container.length; i++) {
+    const art_div = document.querySelector(`.article .${jsonKey[i]}`); // get a div
+    art_div.innerHTML = testArray[i];
+    // art_div.innerHTML = JSON.stringify(jsonArrRan.);
+  }
+}
+
+// gather func
+function init() {
+  artAdd_div(); // add div func to individual of art_container
+  art_div_inputText(); // input text to div of art
+}
+
+// init call
+init();

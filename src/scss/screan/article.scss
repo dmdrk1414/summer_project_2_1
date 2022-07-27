@@ -1,3 +1,53 @@
-h1 {
-    color: aqua;
+$title-reporter_height: 40px;
+$contents_height: 100%;
+$source_height: 20px;
+
+$article_item_width: 100%;
+
+@mixin article_horizontality($input: center){
+    display: flex;
+    justify-content: $input ;
+//    justify-content: flex-end;
+    align-items: center;
+}
+
+.article-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    // background-color: aqua;
+
+    .article {
+        // background-color: antiquewhite;
+    }
+    .article_title{
+        @include article_horizontality();
+        width: $article_item_width;
+        height:$title-reporter_height;
+    }
+    .article_reporter{
+        @include article_horizontality(flex-end);
+        margin-bottom: 15px;
+        width: $article_item_width;
+        height: $title-reporter_height - 10px;
+        font-size: 15px;
+    }
+    .article_contents{
+        margin-bottom: 15px;
+        width: $article_item_width;
+        height:$contents_height;
+        line-height: 22px
+
+    }
+    .article_source{
+        @include article_horizontality(flex-end);
+        width: $article_item_width;
+        height: $source_height;
+
+        div{
+            font-size: 10px;
+        }
+    }
 }

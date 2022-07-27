@@ -117,13 +117,82 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"src/js/screan/article.js":[function(require,module,exports) {
-var articles = [{
-  tytle: "尹 대통령 내부 총질이나 하던 당 대표 바뀌니 달라져",
-  content: "윤석열 대통령이 이준석 국민의힘 대표에 대해 “내부 총질이나 하던 당 대표”라는 표현을 휴대전화 메시지에 쓴 장면이 포착됐다.국회 사진기자단은 26일 오후 4시쯤 국회 본회의장에서 개최된 대정부질문을 지켜보던 권성동 국민의힘 당 대표 직무대행 겸 원내대표의 휴대전화에서 윤 대통령 추정 인물이 권 직무대행과 텔레그램 메시지를 주고받은 장면을 촬영했다. ‘대통령 윤석열’로 표시된 발신자는 권 직무대행에게 “우리당도 잘하네요. 계속 이렇게 해야”·“내부 총질이나 하던 당대표가 바뀌니 달라졌습니다”라고 메시지를 보냈다.이에 권 원내대표는 “대통령님의 뜻을 잘 받들어 당정이 하나되는 모습을 보이겠습니다”라고 답했다. 만약 ‘대통령 윤석열’로 표시된 발신자가 윤 대통령으로 확인될 경우, 그동안 공개적으로 이 대표에 대한 평가를 내놓지 않았던 윤 대통령의 본심이 그대로 드러난 것이어서 큰 논란이 일 것으로 보인다."
-}];
-console.log(articles); // console.log("test");
-},{}],"src/js/main.js":[function(require,module,exports) {
+})({"src/json/article.json":[function(require,module,exports) {
+module.exports = {
+  "articles": [{
+    "tytle": "尹 대통령 내부 총질이나 하던 당 대표 바뀌니 달라져",
+    "reporter": "노기섭 기자",
+    "content": "윤석열 대통령이 이준석 국민의힘 대표에 대해 “내부 총질이나 하던 당 대표”라는 표현을 휴대전화 메시지에 쓴 장면이 포착됐다.국회 사진기자단은 26일 오후 4시쯤 국회 본회의장에서 개최된 대정부질문을 지켜보던 권성동 국민의힘 당 대표 직무대행 겸 원내대표의 휴대전화에서 윤 대통령 추정 인물이 권 직무대행과 텔레그램 메시지를 주고받은 장면을 촬영했다. ‘대통령 윤석열’로 표시된 발신자는 권 직무대행에게 “우리당도 잘하네요. 계속 이렇게 해야”·“내부 총질이나 하던 당대표가 바뀌니 달라졌습니다”라고 메시지를 보냈다.이에 권 원내대표는 “대통령님의 뜻을 잘 받들어 당정이 하나되는 모습을 보이겠습니다”라고 답했다. 만약 ‘대통령 윤석열’로 표시된 발신자가 윤 대통령으로 확인될 경우, 그동안 공개적으로 이 대표에 대한 평가를 내놓지 않았던 윤 대통령의 본심이 그대로 드러난 것이어서 큰 논란이 일 것으로 보인다.",
+    "source": "https://n.news.naver.com/article/021/0002523796?cds=news_media_pc&type=editn"
+  }, {
+    "tytle": "국내 RE100 기업 21곳으로 세계 4번째…\"인센티브 적극 검토\"",
+    "reporter": "박상돈 기자",
+    "content": "(서울=연합뉴스) 박상돈 기자 = 산업통상자원부는 27일 중구 대한상공회의소에서 국내 RE100(2050년까지 사용전력을 100% 재생에너지로 전환하는 것을 목표로 하는 캠페인) 참여 기업들과 간담회를 열고 RE100 정책 방향을 논의했다고 밝혔다. 글로벌 기업의 환경·사회·지배구조(ESG) 경영 강화로 전 세계 RE100 가입 기업은 2014년 13곳에서 최근 376곳으로 늘었다.",
+    "source": "https://n.news.naver.com/article/021/0002523796?cds=news_media_pc&type=editn"
+  }, {
+    "tytle": "'물가 정점 아직 멀었다'…7월 기대인플레 4.7%, 사상 최고",
+    "reporter": "이주환 기자",
+    "content": "소비자들의 기대인플레이션율(향후 1년의 예상 소비자물가 상승률)이 한 달 만에 0.8%포인트(P) 오르며 4%대 후반까지 올랐다.",
+    "source": "https://n.news.naver.com/article/021/0002523796?cds=news_media_pc&type=editn"
+  }]
+};
+},{}],"src/js/screan/article.js":[function(require,module,exports) {
+var jsonData = require("../../json/article.json"); // take json file
+
+
+var jsonArray = jsonData.articles; // make json file to array
+
+var getRamNumber = Math.floor(Math.random() * jsonArray.length); // return random int
+
+var jsonArrRan = jsonArray[getRamNumber]; // json ArrRan
+
+var jsonKey = Object.keys(jsonData.articles[0]); // get json key
+
+console.log(jsonArray);
+console.log(jsonArrRan);
+console.log(jsonKey);
+var art_container = document.querySelectorAll(".article");
+var art_title = art_container[0];
+var art_reporter = art_container[1];
+var art_contents = art_container[2];
+var art_source = art_container[3]; // fuxk
+
+var testArray = [];
+testArray.push(jsonArrRan.tytle);
+testArray.push(jsonArrRan.reporter);
+testArray.push(jsonArrRan.content);
+testArray.push(jsonArrRan.source);
+console.log(testArray); // add div func to individual of art_container
+// input class to div
+
+function artAdd_div() {
+  var i = 0;
+  art_container.forEach(function (art) {
+    var art_div = document.createElement("div");
+    art.appendChild(art_div);
+    art_div.classList.add("".concat(jsonKey[i++]));
+  });
+} // add txt of div to append child art
+
+
+function art_div_inputText() {
+  for (var i = 0; i < art_container.length; i++) {
+    var art_div = document.querySelector(".article .".concat(jsonKey[i])); // get a div
+
+    art_div.innerHTML = testArray[i]; // art_div.innerHTML = JSON.stringify(jsonArrRan.);
+  }
+} // gather func
+
+
+function init() {
+  artAdd_div(); // add div func to individual of art_container
+
+  art_div_inputText(); // input text to div of art
+} // init call
+
+
+init();
+},{"../../json/article.json":"src/json/article.json"}],"src/js/main.js":[function(require,module,exports) {
 "use strict";
 
 require("./screan/article");
@@ -155,7 +224,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39021" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "38989" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

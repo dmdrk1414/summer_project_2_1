@@ -45,8 +45,43 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
-h1 {
-  color: aqua; }
+.article-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%; }
+  .article-container .article_title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 40px; }
+  .article-container .article_reporter {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 15px;
+    width: 100%;
+    height: 30px;
+    font-size: 15px; }
+  .article-container .article_contents {
+    margin-bottom: 15px;
+    width: 100%;
+    height: 100%;
+    line-height: 22px; }
+  .article-container .article_source {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    height: 20px; }
+    .article-container .article_source div {
+      font-size: 10px; }
+
+body {
+  margin: 25px;
+  margin: 10px 25px 25px 25px; }
 
 
 /*# sourceMappingURL=/main.d9ee62f6.css.map */
