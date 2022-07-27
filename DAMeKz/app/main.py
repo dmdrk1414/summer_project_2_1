@@ -12,6 +12,7 @@ MODEL_PATH = MODEL_DIR / "models.h5"
 TOKENIZER_PATH = MODEL_DIR / "hi.json"
 
 AI_MODEL = None
+
 # Load the model
 @app.on_event("startup")
 def startup():
