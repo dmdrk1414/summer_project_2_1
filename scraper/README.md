@@ -1,13 +1,13 @@
 ## Naver 연애 뉴스 Scraper
 
 실시간 Naver 연애 뉴스의 2개의 기사를 랜덤으로 하나를 선택해 json으로 만들어준다. 
-[article_img](./image.png)
+![article_img](./image.png)
 
 
 ```python
 from scraper import NewsScraper
 
-example = NewsScraper(해
+example = NewsScraper()
 # print data info 
 example.print_info()
 ```
