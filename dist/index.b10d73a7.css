@@ -1,0 +1,121 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.article-container {
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+}
+
+.article-container .article_title {
+  width: 100%;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  display: flex;
+}
+
+.article-container .article_reporter {
+  width: 100%;
+  height: 30px;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 15px;
+  display: flex;
+}
+
+.article-container .article_contents {
+  width: 100%;
+  height: 100%;
+  margin-bottom: 15px;
+  line-height: 22px;
+}
+
+.article-container .article_source {
+  width: 100%;
+  height: 20px;
+  justify-content: flex-end;
+  align-items: center;
+  display: flex;
+}
+
+.article-container .article_source div {
+  font-size: 10px;
+}
+
+.reply-content {
+  color: #0ff;
+}
+
+.comment-container {
+  width: 100%;
+}
+
+.comment-container .comment-form {
+  margin-top: 10px;
+}
+
+.comment-container .comment-form .comment-form_input {
+  width: 80%;
+  height: 30px;
+}
+
+.comment_li {
+  width: 90%;
+  border-bottom: 1px solid #99979780;
+  justify-content: space-between;
+  margin: 10px 0;
+  display: flex;
+}
+
+.comment_li .comment_span {
+  margin-right: 50px;
+  font-family: Do Hyeon, sans-serif;
+  font-size: 20px;
+}
+
+.comment_li .commentlist_delete_button {
+  font-size: 10px;
+}
+
+body {
+  margin: 10px 25px 25px;
+}
+
+/*# sourceMappingURL=index.b10d73a7.css.map */
