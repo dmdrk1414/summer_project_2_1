@@ -1,11 +1,10 @@
 import json
-from urllib.request import urlopen
 import re 
 import random 
-from collections import OrderedDict
 import pathlib
 import datetime as dt
 
+from collections import OrderedDict
 from utils import extract_info, list_check
 
 NAVER_BASE_URL = 'https://entertain.naver.com'
@@ -21,38 +20,33 @@ ARTICLE_COPYRIGHT_TAGS = ARTICLE_BASE_TAGS + '> .copyright >.c_inner > .c_text'
 
 JSON_PATH = str(pathlib.Path(__file__).resolve().parent.parent/ "src" /"json") + "/article.json"
 
-
 def get_url(): 
     news_info = extract_info(NAVER_READ_URL, ARTICLE_URL_TAGS)
     news_id_list = [data['href']for data in news_info]
     news_url_list = [NAVER_BASE_URL +  id for id in news_id_list]
     news_url = news_url_list[random.randint(0,1)]    
-
     return news_url
-
 
 class NewsScraperInit():
     
     def __init__(self):
         self.url = get_url()
 
-    def _get_title(self):
+    def _get_title(self)->str:
         title_information = extract_info(self.url,ARTICLE_BASE_TAGS)
         list_check(title_information)
         
         for title_info in title_information:
             info_title = title_info.find('h2',{'class':'end_tit'}).text
             title = info_title.strip()
-        
         return title
 
-    def _get_reporter(self):
+    def _get_reporter(self)->str:
         reporter_information = extract_info(self.url, ARTICLE_REPORTER_TAGS)
         reporter = reporter_information[0].text
-
         return reporter
 
-    def _get_contents(self):
+    def _get_contents(self)->str:
         contents_information = extract_info(self.url, ARTICLE_CONTENTS_TAGS)
 
         del_list = ['img','script']
@@ -62,14 +56,12 @@ class NewsScraperInit():
 
         parsing_contents=str(contents_information[0])
         content = re.sub('<.+?>','',parsing_contents,0).strip()
-
         return content
         
-    def _get_copyright(self):
+    def _get_copyright(self)->str:
         copyright = extract_info(self.url,ARTICLE_COPYRIGHT_TAGS)
         copyright = copyright[0].text
         copyright = copyright.split('ⓒ')[1].split('.')[0].strip()
-
         return copyright
 
 
@@ -80,7 +72,6 @@ class NewsScraper(NewsScraperInit):
         self.reporter = self._get_reporter()
         self.contents = self._get_contents()
         self.copyright = self._get_copyright()
-
     
     def print_info(self):
         print_data ={
@@ -92,6 +83,7 @@ class NewsScraper(NewsScraperInit):
 
         for key in print_data.keys():
             print(f'[{key}]: {print_data[key]}')
+        return None
 
     # def mk_json(self):
         # x = dt.datetime.now()
