@@ -192,11 +192,74 @@ function init() {
 
 
 init();
-},{"../../json/article.json":"src/json/article.json"}],"src/js/main.js":[function(require,module,exports) {
+},{"../../json/article.json":"src/json/article.json"}],"src/js/screan/todo.js":[function(require,module,exports) {
+var toDoForm = document.getElementById("comment-form");
+var toDoList = document.getElementById("comment-list");
+var toDoInput = document.querySelector("#comment-form input");
+var TODOS_KEY = "todos";
+var toComment = [];
+
+function savedToComment() {
+  localStorage.setItem(TODOS_KEY, JSON.stringify(toComment));
+}
+
+function deleteToComment(event) {
+  var li = event.target.parentElement;
+  li.remove();
+  var li_ID = li.id;
+  toComment = toComment.filter(function (toDo) {
+    return toDo.id !== parseInt(li_ID);
+  });
+  savedToComment();
+}
+
+function paintToComment(newTodo) {
+  var li = document.createElement("li");
+  li.id = newTodo.id;
+  li.classList.add("comment_li");
+  var span = document.createElement("span");
+  span.innerText = newTodo.text;
+  span.classList.add("comment_span");
+  var div = document.createElement("div");
+  div.classList.add("comment-list_button");
+  var button = document.createElement("button");
+  button.classList.add("commentlist_delete_button");
+  button.addEventListener("click", deleteToComment);
+  button.innerText = "❌";
+  li.appendChild(span);
+  li.appendChild(button);
+  toDoList.appendChild(li);
+}
+
+function handleToCommentSubmit(event) {
+  event.preventDefault();
+  var newTodo = toDoInput.value;
+  toDoInput.value = "";
+  var newTodoObj = {
+    text: newTodo,
+    id: Date.now()
+  };
+  toComment.push(newTodoObj);
+  paintToComment(newTodoObj);
+  savedToComment();
+}
+
+toDoForm.addEventListener("submit", handleToCommentSubmit);
+var savedToCommentss = localStorage.getItem(TODOS_KEY);
+
+if (savedToCommentss !== null) {
+  var parseToComments = JSON.parse(savedToCommentss); // localStorage에 받은것들을 배열로 저장
+
+  toComment = parseToComments;
+  parseToComments.forEach(paintToComment);
+}
+},{}],"src/js/main.js":[function(require,module,exports) {
 "use strict";
 
 require("./screan/article");
-},{"./screan/article":"src/js/screan/article.js"}],"../../.nvm/versions/node/v14.16.1/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+
+require("./screan/todo");
+},{"./screan/article":"src/js/screan/article.js","./screan/todo":"src/js/screan/todo.js"}],"../../.nvm/versions/node/v14.16.1/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -224,7 +287,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "38989" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37497" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

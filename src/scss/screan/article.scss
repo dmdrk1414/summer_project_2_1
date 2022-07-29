@@ -18,12 +18,13 @@ $article_item_width: 100%;
     width: 100%;
     height: 100%;
     // background-color: aqua;
-
-    .article {
-        // background-color: antiquewhite;
-    }
+    
+    // .article {
+    //     // background-color: antiquewhite;
+    // }              
     .article_title{
         @include article_horizontality();
+        font-weight: bold;
         width: $article_item_width;
         height:$title-reporter_height;
     }

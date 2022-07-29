@@ -1,0 +1,27 @@
+.comment-container {
+  width: 100%;
+  .comment-form {
+    margin-top: 10px;
+    .comment-form_input {
+      width: 80%;
+      height: 30px;
+    }
+  }
+}
+
+.comment_li {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin: 10px 0px 10px;
+  border-bottom: 1px solid rgba($color: #999797, $alpha: 0.5);
+
+  .comment_span {
+    margin-right: 50px;
+    font-family: "Do Hyeon", sans-serif;
+    font-size: 20px;
+  }
+  .commentlist_delete_button {
+    font-size: 10px;
+  }
+}
