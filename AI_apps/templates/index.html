@@ -1,9 +1,21 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <div id="article_box">
-    <h3 id="aritcle_header">{{article}}</h3>
+<section class="article_section text-center">
+  <h3 class="article_heading">{{article['title']}}</h3>
+  <p class="article_reporter">{{article['reporter']}}</p>
+  <p class="article_contents">{{article['contents']}}</p>
+  <p class="article_copyright">{{article['copyright']}}</p>
+</section>
 
-  </div>  
-
+<div id="inp_comments">
+  <form method="GET" action="/predict">
+    <div id="inp_text">
+      <input type="text" name="comments">
+    </div>
+    <div class="button">
+      <button type="button">Submit</button>
+    </div>
+  </form>
+</div>
 {% endblock %}
