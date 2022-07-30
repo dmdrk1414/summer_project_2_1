@@ -1,9 +1,7 @@
 import json
-from tkinter.ttk import Separator
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 import requests
-
 
 def extract_info(url, select_tag=None):
     if requests.get(url).status_code == 200:

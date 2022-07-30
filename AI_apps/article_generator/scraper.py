@@ -3,7 +3,6 @@ import re
 import random 
 import pathlib
 
-from collections import OrderedDict
 from utils import extract_info, list_check
 
 NAVER_BASE_URL = 'https://entertain.naver.com'
