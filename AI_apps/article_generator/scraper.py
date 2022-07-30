@@ -39,10 +39,10 @@ class NewsScraperInit():
 
     def _get_reporter(self):
         reporter_information = extract_info(self.url, ARTICLE_REPORTER_TAGS)
-        if reporter_information == None:
+        if not reporter_information:
             return 'No Informaton'
         reporter = reporter_information[0].text
-        return reporters
+        return reporter
 
     def _get_contents(self):
         contents_information = extract_info(self.url, ARTICLE_CONTENTS_TAGS)
