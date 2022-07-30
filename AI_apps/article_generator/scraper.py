@@ -2,8 +2,7 @@ import json
 import re 
 import random 
 import pathlib
-
-from utils import extract_info, list_check
+import scraper_utils as utils
 
 NAVER_BASE_URL = 'https://entertain.naver.com'
 NAVER_READ_URL = NAVER_BASE_URL + '/home'
@@ -19,7 +18,7 @@ ARTICLE_COPYRIGHT_TAGS = ARTICLE_BASE_TAGS + '> .copyright >.c_inner > .c_text'
 JSON_PATH = str(pathlib.Path(__file__).resolve().parent.parent/ "src" /"json") + "/article.json"
 
 def get_url(): 
-    news_info = extract_info(NAVER_READ_URL, ARTICLE_URL_TAGS)
+    news_info = utils.extract_info(NAVER_READ_URL, ARTICLE_URL_TAGS)
     news_id_list = [data['href']for data in news_info]
     news_url_list = [NAVER_BASE_URL +  id for id in news_id_list]
     news_url = news_url_list[random.randint(0,1)]    
@@ -30,8 +29,8 @@ class NewsScraperInit():
         self.url = get_url()
 
     def _get_title(self):
-        title_information = extract_info(self.url,ARTICLE_BASE_TAGS)
-        list_check(title_information)
+        title_information = utils.extract_info(self.url,ARTICLE_BASE_TAGS)
+        utils.list_check(title_information)
         
         for title_info in title_information:
             info_title = title_info.find('h2',{'class':'end_tit'}).text
@@ -39,12 +38,12 @@ class NewsScraperInit():
         return title
 
     def _get_reporter(self):
-        reporter_information = extract_info(self.url, ARTICLE_REPORTER_TAGS)
+        reporter_information = utils.extract_info(self.url, ARTICLE_REPORTER_TAGS)
         reporter = reporter_information[0].text
         return reporter
 
     def _get_contents(self):
-        contents_information = extract_info(self.url, ARTICLE_CONTENTS_TAGS)
+        contents_information = utils.extract_info(self.url, ARTICLE_CONTENTS_TAGS)
 
         del_list = ['img','script']
         for d_con in del_list:
@@ -56,7 +55,7 @@ class NewsScraperInit():
         return content
         
     def _get_copyright(self):
-        copyright = extract_info(self.url,ARTICLE_COPYRIGHT_TAGS)
+        copyright = utils.extract_info(self.url,ARTICLE_COPYRIGHT_TAGS)
         copyright = copyright[0].text
         copyright = copyright.split('ⓒ')[1].split('.')[0].strip()
         return copyright
