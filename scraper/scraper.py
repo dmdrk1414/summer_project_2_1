@@ -2,7 +2,6 @@ import json
 import re 
 import random 
 import pathlib
-import datetime as dt
 
 from collections import OrderedDict
 from utils import extract_info, list_check
@@ -28,7 +27,6 @@ def get_url():
     return news_url
 
 class NewsScraperInit():
-    
     def __init__(self):
         self.url = get_url()
 
@@ -41,12 +39,12 @@ class NewsScraperInit():
             title = info_title.strip()
         return title
 
-    def _get_reporter(self)->str:
+    def _get_reporter(self):
         reporter_information = extract_info(self.url, ARTICLE_REPORTER_TAGS)
         reporter = reporter_information[0].text
         return reporter
 
-    def _get_contents(self)->str:
+    def _get_contents(self):
         contents_information = extract_info(self.url, ARTICLE_CONTENTS_TAGS)
 
         del_list = ['img','script']
@@ -58,7 +56,7 @@ class NewsScraperInit():
         content = re.sub('<.+?>','',parsing_contents,0).strip()
         return content
         
-    def _get_copyright(self)->str:
+    def _get_copyright(self):
         copyright = extract_info(self.url,ARTICLE_COPYRIGHT_TAGS)
         copyright = copyright[0].text
         copyright = copyright.split('ⓒ')[1].split('.')[0].strip()
@@ -85,26 +83,24 @@ class NewsScraper(NewsScraperInit):
             print(f'[{key}]: {print_data[key]}')
         return None
 
-    # def mk_json(self):
-        # x = dt.datetime.now()
-        # now_time = x.strftime("%Y%m%d")
+    def tojson(self):
+        if pathlib.Path(JSON_PATH):
+            with open(JSON_PATH,"r") as f:
+                json_data = json.load(f)
+        else:
+            json_data = {}
+            json_data['article'] = []
+        
+        json_data['article'].append({
+            'title': self.title,
+            'reporter':self.reporter,
+            'content':self.content,
+            'copyright':self.copyright
+        })
 
-        # json_data = {}
-        # json_data[now_time]=[]
-        # json_data[now_time].append({
-        #     'title': self.title,
-        #     'reporter':self.reporter,
-        #     'content':self.content,
-        #     'copyright':self.copyright
-        # })
-
-        # with open(JSON_PATH+'/article.json','w',encoding='utf-8') as f:
-        #     json.dump(json_data,f,indent='\t')
-        pass  
-# def write_to_json(resource):
-#     with open('data.json','w') as f:
-#         json.dump(resource, f)
-
+        with open(JSON_PATH,"w",encoding='utf-8') as f:
+            json.dump(json_data,f,indent='\t')
+        return None
 
 
     
