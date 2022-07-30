@@ -30,7 +30,7 @@ class NewsScraperInit():
     def __init__(self):
         self.url = get_url()
 
-    def _get_title(self)->str:
+    def _get_title(self):
         title_information = extract_info(self.url,ARTICLE_BASE_TAGS)
         list_check(title_information)
         
@@ -71,20 +71,23 @@ class NewsScraper(NewsScraperInit):
         self.contents = self._get_contents()
         self.copyright = self._get_copyright()
     
-    def print_info(self):
-        print_data ={
+    def get_info(self, only_print=False):
+        data ={
             'title': self.title,
             'reporter':self.reporter,
             'content':self.contents,
             'copyright':self.copyright 
         }
-
-        for key in print_data.keys():
-            print(f'[{key}]: {print_data[key]}')
-        return None
+        
+        if only_print == True:
+            for key in data.keys():
+                print(f'[{key}]: {data[key]}')
+            return None
+        else:
+            return data
 
     def tojson(self):
-        if pathlib.Path(JSON_PATH):
+        if pathlib.Path(JSON_PATH)==True:
             with open(JSON_PATH,"r") as f:
                 json_data = json.load(f)
         else:
@@ -94,12 +97,12 @@ class NewsScraper(NewsScraperInit):
         json_data['article'].append({
             'title': self.title,
             'reporter':self.reporter,
-            'content':self.content,
+            'contents':self.contents,
             'copyright':self.copyright
         })
 
         with open(JSON_PATH,"w",encoding='utf-8') as f:
-            json.dump(json_data,f,indent='\t')
+            json.dump(json_data,f,indent='\t',ensure_ascii=False)
         return None
 
 
