@@ -1,0 +1,17 @@
+@mixin login_commen($input: center) {
+  padding: 2px;
+  border-radius: 5px;
+  background-color: antiquewhite;
+}
+
+.loginHead-container {
+  display: flex;
+  justify-content: flex-end;
+  .join {
+    margin-right: 10px;
+    @include login_commen();
+  }
+  .sing_up {
+    @include login_commen();
+  }
+}

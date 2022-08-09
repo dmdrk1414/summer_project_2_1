@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "박승찬, 김다경, 조성무",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "start": "parcel index.html"
+    "start": "parcel index.html",
+    "dev": "nodemon --watch src/ ./src/js/node/app.js"
   },
   "repository": {
     "type": "git",
@@ -18,8 +20,13 @@
   },
   "homepage": "https://github.com/dmdrk1414/summer_project_2_1#readme",
   "dependencies": {
+    "express": "^4.18.1",
     "node-sass": "^7.0.1",
     "reset.scss": "^1.0.0",
     "src": "^1.1.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.18.10",
+    "@babel/core": "^7.18.10"
   }
 }
